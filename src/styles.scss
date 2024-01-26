@@ -1,1 +1,176 @@
-/* You can add global styles to this file, and also import other style files */
+$navbarColor: #ff6c00;
+$whiteColor: #fff;
+$bodyColor: #fafafa;
+$mainFonts: 'Roboto', 'Open Sans';
+$mainColor: #88a0c2;
+$hoverAndHeadingColor: #375a64;
+$lightRed: #e18e8e;
+$lightGreen: #00b375;
+$dropDown: #88a0c2;
+
+/*GENERIC SETTINGS*/
+html,
+body {
+  font-family: $mainFonts;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background-color: $bodyColor !important;
+  color: $mainColor;
+  height: 100%;
+}
+
+.light-red {
+  background-color: $lightRed !important;
+}
+
+.light-green {
+  background-color: $lightGreen !important;
+}
+
+.lite-right-border {
+  height: 100%;
+  border-right: 2px solid rgba(154, 166, 181, 0.21);
+}
+
+/*MAIN HEADER*/
+header {
+  #main-navbar {
+    background-color: $navbarColor !important;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+
+    .navbar-nav {
+      li {
+        .dropdown-menu {
+          background-color: $whiteColor !important;
+          padding-top: 0;
+          padding-bottom: 0;
+
+          .dropdown-divider {
+            margin: 0 !important;
+          }
+
+          a {
+            color: $hoverAndHeadingColor !important;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            transition: background-color, color 0.2s ease-in;
+          }
+
+          a:hover {
+            background-color: $hoverAndHeadingColor !important;
+            color: $whiteColor !important;
+          }
+        }
+
+        #sign-out-link {
+          color: $navbarColor !important;
+        }
+
+        #sign-out-link:hover {
+          color: #fff !important;
+        }
+      }
+    }
+  }
+}
+
+/*MAIN CONTENT*/
+#main-content {
+  min-height: 100%;
+
+  form {
+    label {
+      color: $mainColor;
+    }
+  }
+
+  .container {
+    /*TABLES IN GENERAL*/
+    table {
+      thead {
+        color: $hoverAndHeadingColor;
+      }
+      tbody {
+        color: $mainColor;
+
+        tr {
+          td,
+          th {
+            padding: 12px;
+          }
+        }
+      }
+    }
+    .table-striped > tbody > tr:nth-child(2n + 1) > td,
+    .table-striped > tbody > tr:nth-child(2n + 1) > th {
+      background-color: $bodyColor !important;
+    }
+
+    /*PAGINATIONS*/
+    .row {
+      .col-12 {
+        .main-pagination {
+          .pagination {
+            li {
+              width: 60px;
+
+              a {
+                border: none !important;
+                color: $mainColor !important;
+              }
+              a:focus {
+                outline: none !important;
+                box-shadow: none !important;
+              }
+            }
+
+            li.active {
+              background-color: $navbarColor !important;
+              a {
+                border: none !important;
+                background-color: transparent;
+                color: $whiteColor !important;
+              }
+            }
+            a:hover {
+              background-color: $navbarColor !important;
+              color: $whiteColor !important;
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      .nav-tabs {
+        a {
+          color: $mainColor;
+        }
+      }
+
+      .bg-computer {
+        background-image: url('./assets/img/computer-1149148_1920.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top right;
+        width: 100%;
+        height: 520px;
+      }
+
+      #doctor-visit-text {
+        font-size: 16.2rem;
+      }
+    }
+  }
+}
+
+footer {
+  background-color: $hoverAndHeadingColor;
+}
+
+/*MEDIA QUERIES*/
+@media (max-width: 1199.98px) {
+  .lite-right-border {
+    border-right: none;
+  }
+}

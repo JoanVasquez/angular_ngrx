@@ -1,0 +1,158 @@
+<header class="shadow-sm">
+  <nav
+    class="navbar navbar-expand-lg navbar-light bg-transparent"
+    id="main-navbar"
+  >
+    <div class="container-fluid pl-5 pr-5">
+      <a class="navbar-brand" href="#">
+        <img
+          src="../../../assets/img/logo-header.svg"
+          alt=""
+          width="54"
+          height="54"
+        />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item ml-4">
+            <a class="nav-link text-white" [routerLink]="menu.home.path">
+              {{ menu.home.label }}
+            </a>
+          </li>
+          <li class="nav-item dropdown ml-4">
+            <a
+              class="nav-link text-white dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {{ menu.create.label }}
+            </a>
+            <div
+              class="dropdown-menu shadow-sm"
+              aria-labelledby="navbarDropdown"
+            >
+              <a
+                *ngFor="let createItem of menu.create.menuItems"
+                [routerLink]="createItem.path"
+                class="dropdown-item"
+                href="#"
+              >
+                {{ createItem.label }}
+              </a>
+            </div>
+          </li>
+          <li class="nav-item dropdown ml-4">
+            <a
+              class="nav-link text-white dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {{ menu.list.label }}
+            </a>
+            <div
+              class="dropdown-menu shadow-sm"
+              aria-labelledby="navbarDropdown"
+            >
+              <a
+                *ngFor="let listItems of menu.list.menuItems"
+                [routerLink]="listItems.path"
+                class="dropdown-item"
+                href="#"
+              >
+                {{ listItems.label }}
+              </a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown ml-4">
+            <a
+              class="nav-link text-white dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {{ menu.lang.label }}
+            </a>
+            <div
+              class="dropdown-menu shadow-sm"
+              aria-labelledby="navbarDropdown"
+            >
+              <ng-container *ngFor="let lang of menu.lang.languages">
+                <a
+                  *ngIf="activeLang !== lang.code"
+                  class="dropdown-item"
+                  href="javascript:void(0)"
+                  (click)="onChangeLanguage(lang.code)"
+                >
+                  <img
+                    class="img-fluid"
+                    [src]="'../../../assets/img/' + lang.code + '.svg'"
+                    [alt]="lang.lang"
+                    width="25"
+                    height="25"
+                  />
+                  <span class="ml-2">{{ lang.lang }}</span>
+                </a>
+              </ng-container>
+            </div>
+          </li>
+        </ul>
+        <span class="form-inline list-inline ml-4">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown mb-2 mr-4">
+              <a
+                class="nav-link text-white dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span class="font-weight-lighter">Ronny</span> Carreras
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-danger" id="sign-out-link" href="#"
+                  >Sign Out</a
+                >
+              </div>
+            </li>
+            <img
+              src="https://randomuser.me/api/portraits/men/46.jpg"
+              alt=""
+              class="rounded-pill"
+              width="45"
+              height="45"
+            />
+          </ul>
+        </span>
+      </div>
+    </div>
+  </nav>
+</header>

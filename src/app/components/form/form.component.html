@@ -1,0 +1,106 @@
+<form novalidate [formGroup]="form">
+  <div class="form-row">
+    <div
+      *ngFor="let ngCol of props.ngCols; let i = index"
+      [ngClass]="'form-group ' + ngCol"
+    >
+      <label class="font-weight-bold">{{ props.properties[i].label }}</label>
+      <div *ngIf="props.properties[i].inputType === 'field'">
+        <input
+          class="form-control"
+          required
+          [type]="props.properties[i].type"
+          [placeholder]="props.properties[i].placeholder"
+          [name]="props.properties[i].name"
+          [formControlName]="props.properties[i].name"
+        />
+        <app-input-error
+          [error]="props.properties[i].name"
+          [form]="form"
+        ></app-input-error>
+      </div>
+
+      <div *ngIf="props.properties[i].inputType === 'textarea'">
+        <textarea
+          class="form-control"
+          [placeholder]="props.properties[i].placeholder"
+          [formControlName]="props.properties[i].name"
+        ></textarea>
+        <app-input-error
+          [error]="props.properties[i].name"
+          [form]="form"
+        ></app-input-error>
+      </div>
+
+      <div *ngIf="props.properties[i].inputType === 'select'">
+        <select
+          class="form-control"
+          [formControlName]="props.properties[i].name"
+        >
+          <option [ngValue]="null" disabled>Choose a value</option>
+          <option
+            *ngFor="let option of props.properties[i].options"
+            [ngValue]="option"
+          >
+            {{ option }}
+          </option>
+        </select>
+        <app-input-error
+          [error]="props.properties[i].name"
+          [form]="form"
+        ></app-input-error>
+      </div>
+
+      <div
+        class="form-check"
+        *ngIf="props.properties[i].inputType === 'checkbox'"
+      >
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [formControlName]="props.properties[i].name"
+        />
+        <label class="form-check-label">
+          {{ props.properties[i].msg }}
+        </label>
+        <app-input-error
+          [error]="props.properties[i].name"
+          [form]="form"
+        ></app-input-error>
+      </div>
+
+      <div class="form-check" *ngIf="props.properties[i].inputType === 'radio'">
+        <input
+          class="form-check-input"
+          type="radio"
+          [formControlName]="props.properties[i].name"
+        />
+        <label class="font-weight-bold">
+          {{ props.properties[i].msg }}
+        </label>
+        <app-input-error
+          [error]="props.properties[i].name"
+          [form]="form"
+        ></app-input-error>
+      </div>
+    </div>
+  </div>
+
+  <div class="clearfix">
+    <button
+      type="submit"
+      class="rounded-lg btn btn-success float-right ml-2 mr-2"
+      [disabled]="form.invalid"
+    >
+      {{ btnSubmitLabel }}
+    </button>
+
+    <button
+      type="button"
+      class="rounded-lg btn btn-danger float-right ml-2 mr-2"
+      type="reset"
+    >
+      {{ btnResetLabel }}
+    </button>
+  </div>
+</form>

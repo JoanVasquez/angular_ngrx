@@ -1,0 +1,19 @@
+<span
+  class="text-danger"
+  *ngIf="form.get(error).hasError('required') && form.get(error)?.touched"
+>
+  {{ labels.emptyField }}
+</span>
+<span class="text-danger" *ngIf="form.get(error).hasError('email')"
+  >{{ labels.emailField }}
+</span>
+<!-- <span class="text-danger" *ngIf="form.get(error).hasError('minlength')">
+    {{ labels.length }} {{ data.get(error).errors.minlength.requiredLength }}
+    {{ labels.characters }}
+  </span> -->
+<span
+  class="text-danger"
+  *ngIf="form.get(error)?.hasError('pattern') && form.get(error)?.touched"
+>
+  {{ labels.invalidFormat }}
+</span>

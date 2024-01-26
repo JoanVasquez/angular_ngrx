@@ -1,0 +1,100 @@
+<pagination-template
+  #p="paginationApi"
+  (pageChange)="pageChange.emit($event)"
+  (pageBoundsCorrection)="pageBoundsCorrection.emit($event)"
+>
+  <nav class="main-pagination mt-3 table-responsive">
+    <ul class="pagination">
+      <li
+        [className]="
+          p.isFirstPage()
+            ? 'ml-1 mr-1 page-item rounded text-center shadow-sm disabled'
+            : 'ml-1 mr-1 page-item rounded text-center shadow-sm'
+        "
+      >
+        <a
+          class="page-link"
+          href="javascript:void(0)"
+          aria-label="First"
+          (click)="p.setCurrent(1)"
+        >
+          <span aria-hidden="true"><</span>
+        </a>
+      </li>
+      <li
+        [className]="
+          p.isFirstPage()
+            ? 'ml-1 mr-1 page-item rounded text-center shadow-sm disabled'
+            : 'ml-1 mr-1 page-item rounded text-center shadow-sm'
+        "
+      >
+        <a
+          class="page-link"
+          href="javascript:void(0)"
+          aria-label="Previous"
+          (click)="p.previous()"
+        >
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+
+      <li
+        *ngFor="let page of p.pages"
+        [className]="
+          p.getCurrent() === page.value
+            ? 'ml-1 mr-1 page-item rounded text-center shadow-sm active disabled'
+            : 'ml-1 mr-1 page-item rounded text-center shadow-sm '
+        "
+      >
+        <a
+          class="page-link"
+          href="javascript:void(0)"
+          (click)="p.setCurrent(page.value)"
+          *ngIf="p.getCurrent() !== page.value"
+          >{{ page.label }}</a
+        >
+
+        <a
+          class="page-link"
+          href="javascript:void(0)"
+          *ngIf="p.getCurrent() === page.value"
+        >
+          {{ page.label }}
+        </a>
+      </li>
+
+      <li
+        [className]="
+          p.isLastPage()
+            ? 'ml-1 mr-1 page-item rounded text-center shadow-sm disabled'
+            : 'ml-1 mr-1 page-item rounded text-center shadow-sm'
+        "
+      >
+        <a
+          class="page-link"
+          href="javascript:void(0)"
+          aria-label="Next"
+          (click)="p.next()"
+        >
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      <li
+        [className]="
+          p.isLastPage()
+            ? 'ml-1 mr-1 page-item rounded text-center shadow-sm disabled'
+            : 'ml-1 mr-1 page-item rounded text-center shadow-sm'
+        "
+      >
+        <a
+          class="page-link"
+          href="javascript:void(0)"
+          aria-label="First"
+          (click)="p.setCurrent(p.getLastPage())"
+        >
+          <span aria-hidden="true">></span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</pagination-template>

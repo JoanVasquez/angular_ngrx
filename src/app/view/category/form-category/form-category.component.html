@@ -1,0 +1,36 @@
+<div class="row shadow-sm">
+  <div class="col-12 p-4 bg-white">
+    <h2 class="text-primary text-uppercase">
+      {{ titleLabel }}
+    </h2>
+    <app-alert
+      *ngIf="error | async"
+      (removeAlert)="onRemoveAlert()"
+      alertColor="alert-danger"
+      [message]="error | async"
+      [messageIdentity]="labels.error"
+    ></app-alert>
+    <app-alert
+      *ngIf="isSuccess | async"
+      (removeAlert)="onRemoveAlert()"
+      alertColor="alert-success"
+      [message]="labels.successfullySaved"
+      [messageIdentity]="labels.message"
+    ></app-alert>
+    <img
+      *ngIf="loading | async; else categoryform"
+      class="img-fluid mx-auto d-block mt-5"
+      src="../../../../assets/img/loading.gif"
+      alt=""
+    />
+    <ng-template #categoryform>
+      <app-form
+        [form]="form"
+        [props]="props"
+        (submit)="onSubmit()"
+        [btnSubmitLabel]="btnSubmitLabel"
+        [btnResetLabel]="labels.reset"
+      ></app-form>
+    </ng-template>
+  </div>
+</div>

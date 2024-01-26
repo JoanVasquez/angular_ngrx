@@ -1,0 +1,6 @@
+<div [ngClass]="alertColor + ' alert alert-dismissible fade show'" role="alert">
+  <strong>{{ messageIdentity }}: </strong> {{ message | json }}
+  <button type="button" class="close" aria-label="Close" (click)="onRemove()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

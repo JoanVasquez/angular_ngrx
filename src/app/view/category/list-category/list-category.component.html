@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-alert
+      *ngIf="error | async"
+      (removeAlert)="onRemoveAlert()"
+      alertColor="alert-danger"
+      [message]="error | async"
+      [messageIdentity]="labels.error"
+    ></app-alert>
+    <app-table
+      [loading]="loading"
+      [header]="labels.listCategory"
+      [headerTable]="headerTable"
+      [data]="data"
+      action="true"
+      [actionText]="labels.actionText"
+      updatePath="/category/edit"
+      (delete)="delete($event)"
+    >
+    </app-table>
+  </div>
+</div>

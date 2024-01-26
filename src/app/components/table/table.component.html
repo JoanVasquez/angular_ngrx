@@ -1,0 +1,83 @@
+<div class="row shadow-sm">
+  <div class="col-12 p-5 rounded bg-white shadow-sm">
+    <h2 class="text-uppercase text-primary mb-4">{{ header }}</h2>
+    <img
+      class="img-fluid mx-auto d-block mt-5"
+      src="../../../assets/img/loading.gif"
+      alt=""
+      *ngIf="loading | async; else datatable"
+    />
+    <ng-template #datatable>
+      <div
+        class="table-responsive"
+        *ngIf="(data | async).length && headerTable; else nodata"
+      >
+        <table class="table table-sm table-striped text-center">
+          <thead>
+            <tr>
+              <th scope="col" *ngFor="let ht of objectValues(headerTable)">
+                <span *ngIf="ht.constructor.name === 'String'; else actions">
+                  {{ ht }}
+                </span>
+                <ng-template #actions>
+                  <span *ngIf="action">
+                    {{ actionText }}
+                  </span>
+                </ng-template>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let dt of data
+                  | async
+                  | paginate : { itemsPerPage: 10, currentPage: p }
+              "
+            >
+              <td *ngFor="let ht of objectKeys(headerTable)">
+                <div class="mt-2">
+                  {{ displayTableData(dt[ht]) }}
+                  <!-- {{ if(dt[ht] instanceof)  }} -->
+                </div>
+                <div *ngIf="ht === 'actions'" class="mt-2">
+                  <button
+                    type="button"
+                    class="ml-2 mt-2 btn btn-secondary"
+                    (click)="onUpdate(dt.id)"
+                  >
+                    <i class="fa far fa-edit"></i>
+                  </button>
+                  <button
+                    *ngIf="headerTable[ht].delete"
+                    type="button"
+                    class="ml-2 mt-2 btn btn-danger"
+                    (click)="onDelete(dt.id)"
+                  >
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+                  <button
+                    *ngIf="headerTable[ht].details"
+                    type="button"
+                    class="ml-2 mt-2 btn btn-info"
+                    (click)="onShowDetails(dt)"
+                  >
+                    <i class="fas fa-info-circle"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ng-template #nodata>
+        <hr />
+        <h3 class="text-center text-info mt-5">{{ labels.noData }}</h3>
+      </ng-template>
+      <app-pagination
+        (pageChange)="onChange($event)"
+        *ngIf="(data | async).length"
+      ></app-pagination>
+    </ng-template>
+  </div>
+</div>
